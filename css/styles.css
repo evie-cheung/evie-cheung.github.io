@@ -10970,3 +10970,28 @@ section.resume-section .resume-section-content {
     padding-bottom: 5rem;
   }
 }
+
+
+.interest-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.interest-gallery img {
+  height: 160px;
+  width: auto;
+  max-width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.interest-gallery img:hover {
+  transform: scale(1.05);
+}
