@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-commerce Data Platform Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      background: #fdfdfd;
+      color: #333;
+    }
+    h1, h2, h3 {
+      color: #2c3e50;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      margin: 10px 0;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>📌 E-commerce Data Platform Project</h1>
+
+  <h2>🔗 Project Overview</h2>
+  <p>This project demonstrates the end-to-end implementation of a lightweight data analytics pipeline using modern data tools, built to showcase practical capabilities for a real-world e-commerce dataset. The objective is to extract insights into overall sales performance, product profitability, and customer behavior.</p>
+  <p><strong>Tech stack used:</strong> Python (Pandas), Snowflake, dbt Cloud, Power BI<br>
+     <strong>Focus areas:</strong> Data cleaning, data warehousing, modeling, BI reporting</p>
+
+  <h2>🧮 Architecture Diagram</h2>
+  <img src="assets/img/ecommerce_pipeline_diagram.png" alt="Pipeline Diagram" />
+
+  <h2>🧬 Dataset</h2>
+  <p>The source dataset contains e-commerce order records including order date, customer attributes, product details, sales, quantity, profit, discount, and shipping costs.</p>
+  <ul>
+    <li><strong>Total rows:</strong> ~10,000</li>
+    <li><strong>Sample fields:</strong></li>
+    <ul>
+      <li><code>ORDER_DATE</code> (Date)</li>
+      <li><code>PRODUCT</code>, <code>PRODUCT_CATEGORY</code></li>
+      <li><code>SALES</code>, <code>PROFIT</code>, <code>QUANTITY</code>, <code>DISCOUNT</code>, <code>SHIPPING_COST</code></li>
+      <li><code>GENDER</code>, <code>DEVICE_TYPE</code>, <code>CUSTOMER_LOGIN_TYPE</code></li>
+    </ul>
+  </ul>
+
+  <h2>🧹 Step 1: Data Cleaning (Python)</h2>
+  <ul>
+    <li>✅ Renaming columns to lowercase with underscores</li>
+    <li>✅ Converting data types (e.g., dates, numbers)</li>
+    <li>✅ Handling missing values (drop/replace)</li>
+    <li>✅ Unifying categorical values (e.g., gender: <code>male</code>, <code>female</code>)</li>
+  </ul>
+  <p><strong>Output file:</strong> ecommerce_cleaned.csv</p>
+  <p><a href="https://github.com/evie-cheung/ecommerce-pipeline/blob/main/ecommerce_cleaning.ipynb" target="_blank">View Python cleaning code →</a></p>
+
+  <h2>🧊 Step 2: Upload to Snowflake</h2>
+  <p>The cleaned CSV was uploaded through <strong>Snowsight Web UI</strong> to the following table:</p>
+  <ul>
+    <li><strong>Database:</strong> ECOMMERCE_DB</li>
+    <li><strong>Schema:</strong> PUBLIC</li>
+    <li><strong>Table:</strong> ECOMMERCE_CLEANED</li>
+  </ul>
+  <img src="assets/img/snowflake_schema_products.png" alt="Snowflake Schema" />
+
+  <h2>🏗 Step 3: Data Modeling (dbt Cloud)</h2>
+  <p>Three dbt models were created:</p>
+  <h3>1. fct_sales_summary</h3>
+  <ul>
+    <li>order_date, total_sales, total_profit, total_quantity, order_count</li>
+  </ul>
+  <h3>2. dim_product_performance</h3>
+  <ul>
+    <li>product, category, total_sales, total_profit, total_quantity</li>
+  </ul>
+  <h3>3. dim_customer_segmentation</h3>
+  <ul>
+    <li>gender, device_type, login_method, total_sales, total_orders</li>
+  </ul>
+  <img src="assets/img/dbt_lineage_linear.png" alt="dbt Lineage" />
+
+  <h2>📊 Step 4: Visualization (Power BI)</h2>
+  <p>Connected in Import mode. Visuals:</p>
+  <h3>📈 Sales Overview</h3>
+  <ul>
+    <li>Total KPIs: Sales, Profit, Orders</li>
+    <li>Line chart: Sales trend</li>
+  </ul>
+  <h3>💰 Product Performance</h3>
+  <ul>
+    <li>Bar: Top 10 Products</li>
+    <li>Treemap: Category Sales</li>
+  </ul>
+  <h3>👥 Customer Insights</h3>
+  <ul>
+    <li>Bar: Sales by Device Type</li>
+    <li>Pie: Gender share</li>
+  </ul>
+  <img src="assets/img/powerbi_dashboard_final.png" alt="Power BI Screenshot" />
+
+  <h2>🏆 Presentation Slides</h2>
+  <img src="assets/img/ecommerce_ppt_thumb.png" alt="PPT Thumb" />
+  <p><a href="https://github.com/evie-cheung/ecommerce-pipeline/blob/main/Ecommerce_Pipeline_Presentation.pdf" target="_blank">Download PPT →</a></p>
+
+  <h2>🧠 Key Learnings</h2>
+  <ul>
+    <li>Built a complete analytics pipeline using modern tools</li>
+    <li>Hands-on with dimensional modeling and dbt transformations</li>
+    <li>Translated raw data into business insights through effective visualization</li>
+  </ul>
+
+  <h2>📂 Project Files & Artifacts</h2>
+  <ul>
+    <li>ecommerce_cleaned.csv</li>
+    <li>models/ – dbt Cloud SQL model files</li>
+    <li>ecommerce_dashboard.pbix</li>
+    <li>Ecommerce_Pipeline_Presentation.pdf</li>
+  </ul>
+  <p><strong>View project repo:</strong> <a href="https://github.com/evie-cheung/ecommerce-pipeline" target="_blank">GitHub Link</a></p>
+</body>
+</html>
